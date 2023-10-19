@@ -1,4 +1,5 @@
 import reflex as rx
+from link_bio.styles.styles import Size
 
 
 def footer() -> rx.Component:
@@ -6,5 +7,9 @@ def footer() -> rx.Component:
         rx.image(
             src="favicon.ico"
         ),
-        rx.text("...Lorem impsum....")
+        rx.text(
+            "...Lorem impsum....",
+            font_size=Size.MEDIUM.value
+        ),
+        margin_bottom=Size.BIG.value
     )
