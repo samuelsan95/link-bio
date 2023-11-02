@@ -1,0 +1,5 @@
+LINKEDIN_URL = "https://www.linkedin.com/in/samuel-sanchez-lopez/"
+GITHUB_URL = "https://github.com/samuelsan95"
+MEDIUM_URL = "https://medium.com/@sanchezlopezsamuel"
+CODEWARS_URL = "https://www.codewars.com/users/samuelsan95"
+EMAIL_URL = "sanchezlopezsamuel@gmail.com"
