@@ -1,16 +1,38 @@
 import reflex as rx
+from typing import List, Dict
 from link_bio.components.link_button import link_button
+from link_bio.components.card import card
 from link_bio.components.title import title
 from link_bio.styles.styles import Size
 from link_bio.constants import LINKEDIN_URL, GITHUB_URL, MEDIUM_URL, CODEWARS_URL, EMAIL_URL
+from link_bio.services.publication_service import get_last_publications_medium, get_publication_image, get_publication_description
+
+
+publications: List[Dict[str, str]] = get_last_publications_medium()
+
 
 def links() -> rx.Component:
     return rx.vstack(
+        title("Últimas publicaciones"),
+        rx.hstack(
+            card(
+                publications[0]['title'],
+                get_publication_description(publications[0]),
+                get_publication_image(publications[0]),
+                publications[0]['link']
+            ),
+            card(
+                publications[1]['title'],
+                get_publication_description(publications[1]),
+                get_publication_image(publications[1]),
+                publications[1]['link']
+            )
+        ),
         title("Enlaces de interés"),
         link_button(
             "Linkedin",
             "Curriculum online",
-            "icons/linkedin.svg",
+            "icons/medium.svg",
             LINKEDIN_URL
         ),
         link_button(

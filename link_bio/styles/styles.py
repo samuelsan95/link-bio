@@ -6,9 +6,9 @@ from .fonts import Font
 
 # Sizes
 class Size(Enum):
-    SMALL = "0.5em"
-    MEDIUM = "0.8em"
-    DEFAULT = "1em"
+    SMALL = "0.8em"
+    MEDIUM = "1em"
+    DEFAULT = "1.2em"
     LARGE = "1.5em"
     BIG = "2em"
     ZERO = "0px !important"
@@ -37,6 +37,14 @@ BASE_STYLE = {
     rx.Link: {
         "text_decoration": "none",
         "_hover": {}
+    },
+    rx.Card: {
+        "border_radius": Size.DEFAULT.value,
+        "background_color": Color.CONTENT.value,
+        "color": TextColor.HEADER.value,
+        "_hover": {
+            "background_color": Color.SECONDARY.value,
+        }
     }
 }
 
@@ -61,6 +69,12 @@ button_body_style = dict(
 title_style = dict(
     width = "100%",
     padding_top = Size.DEFAULT.value
+)
+
+card_image_style = dict(
+    width = "250px",
+    height = "120px",
+    margin_bottom = Size.MEDIUM.value
 )
 
 # Constants

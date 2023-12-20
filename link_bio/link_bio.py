@@ -5,9 +5,6 @@ from link_bio.views.header.header import header
 from link_bio.views.links.links import links
 import link_bio.styles.styles as styles
 
-class State(rx.State):
-    pass
-
 
 def index() -> rx.Component:
     return rx.box(

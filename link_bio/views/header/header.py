@@ -35,15 +35,14 @@ def header() -> rx.Component:
         rx.flex(
             info_text("7+", "Años de experiencia"),
             rx.spacer(),
-            info_text("7+", "Años de experiencia"),
+            info_text("20+", "Participación en proyectos"),
             rx.spacer(),
-            info_text("7+", "Años de experiencia"),
             width="100%"
         ),
         rx.text(
-            """Mi nombre es Samuel y soy un desarrollador web apasionado del mundo tecnológico,
-            con una experiencia de más de 5 años en el sector utilizando tecnologías y lenguajes
-            como JavaScript y sus frameworks Angular 2+, Vue y NodeJs, HTML5, CSS3, Bootstrap y SQL""",
+            """Soy Samuel, un entusiasta desarrollador web con más de cinco años de experiencia en el ámbito tecnológico.
+            Durante mi trayectoria, he trabajado con diversas tecnologías y lenguajes. A continuación os dejo enlaces que pueden ser
+            de interés y utilidad.""",
             color=TextColor.BODY.value
         ),
         spacing=Size.BIG.value,
