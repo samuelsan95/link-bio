@@ -3,7 +3,7 @@ import requests
 
 
 def get_last_publications_medium():
-    url = 'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@sanchezlopezsamuel'
+    url = 'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@samuelsan95'
     headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

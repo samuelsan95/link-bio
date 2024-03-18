@@ -6,7 +6,10 @@ from link_bio.styles.colors import TextColor
 def footer() -> rx.Component:
     return rx.vstack(
         rx.image(
-            src="favicon.ico"
+            src="favicon.ico",
+            width=Size.VERY_BIG.value,
+            height=Size.VERY_BIG.value,
+            alt="Logo SamuelSan"
         ),
         rx.text(
             "...Lorem impsum....",

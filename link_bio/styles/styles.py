@@ -1,7 +1,7 @@
 import reflex as rx
 from enum import Enum
 from .colors import Color, TextColor
-from .fonts import Font
+from .fonts import Font, FontWeight
 
 
 # Sizes
@@ -11,16 +11,24 @@ class Size(Enum):
     DEFAULT = "1.2em"
     LARGE = "1.5em"
     BIG = "2em"
+    VERY_BIG = "4em"
     ZERO = "0px !important"
 
+
+STYLESHEETS = [
+    "https://fonts.googleapis.com/css2?family=Nunito:wght@300;500&display=swap",
+    "https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap"
+]
 
 # Styles general
 BASE_STYLE = {
     "font_family": Font.DEFAULT.value,
+    "font_weight": FontWeight.LIGHT.value,
     "background_color": Color.BACKGROUND.value,
     rx.Heading: {
         "color": TextColor.HEADER.value,
         "font_family": Font.TITLE.value,
+        "font_weight": FontWeight.MEDIUM.value,
     },
     rx.Button: {
         "width": "100%",
@@ -29,6 +37,8 @@ BASE_STYLE = {
         "padding": Size.SMALL.value,
         "border_radius": Size.DEFAULT.value,
         "background_color": Color.CONTENT.value,
+        "white_space": "normal",
+        "text_align": "start",
         "color": TextColor.HEADER.value,
         "_hover": {
             "background_color": Color.SECONDARY.value,
@@ -51,17 +61,20 @@ BASE_STYLE = {
 # Style components
 navbar_title_style = dict(
     font_family=Font.LOGO.value,
+    font_weight=FontWeight.MEDIUM.value,
     font_size=Size.LARGE.value
 )
 
 button_title_style = dict(
     font_family = Font.TITLE.value,
+    font_weight=FontWeight.MEDIUM.value,
     font_size = Size.DEFAULT.value,
     color = TextColor.HEADER.value
 )
 
 button_body_style = dict(
     font_family = Font.DEFAULT.value,
+    font_weight=FontWeight.LIGHT.value,
     font_size = Size.MEDIUM.value,
     color = TextColor.BODY.value
 )
@@ -72,10 +85,11 @@ title_style = dict(
 )
 
 card_image_style = dict(
-    width = "250px",
-    height = "120px",
+    width = "100%",
+    max_width = "280px",
+    max_heights = "280px",
     margin_bottom = Size.MEDIUM.value
 )
 
 # Constants
-MAX_WIDTH = "600px"
+MAX_WIDTH = "650px"

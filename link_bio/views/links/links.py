@@ -5,7 +5,7 @@ from link_bio.components.card import card
 from link_bio.components.title import title
 from link_bio.styles.styles import Size
 from link_bio.constants import LINKEDIN_URL, GITHUB_URL, MEDIUM_URL, CODEWARS_URL, EMAIL_URL
-from link_bio.services.publication_service import get_last_publications_medium, get_publication_image, get_publication_description
+from link_bio.services.publication_service import get_last_publications_medium, get_publication_description
 
 
 publications: List[Dict[str, str]] = get_last_publications_medium()
@@ -14,25 +14,26 @@ publications: List[Dict[str, str]] = get_last_publications_medium()
 def links() -> rx.Component:
     return rx.vstack(
         title("Últimas publicaciones"),
-        rx.hstack(
+        rx.responsive_grid(
             card(
                 publications[0]['title'],
                 get_publication_description(publications[0]),
-                get_publication_image(publications[0]),
                 publications[0]['link']
             ),
             card(
                 publications[1]['title'],
                 get_publication_description(publications[1]),
-                get_publication_image(publications[1]),
                 publications[1]['link']
-            )
+            ),
+            columns=[1, 2],
+            width="100%",
+            spacing=Size.MEDIUM.value
         ),
         title("Enlaces de interés"),
         link_button(
             "Linkedin",
             "Curriculum online",
-            "icons/medium.svg",
+            "icons/linkedin.svg",
             LINKEDIN_URL
         ),
         link_button(
