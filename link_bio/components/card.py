@@ -1,5 +1,5 @@
 import reflex as rx
-import link_bio.styles.styles as styles
+from link_bio.styles.styles import card_style
 from link_bio.utils.utils import shorten_string
 
 MAX_CHARACTERES = 200
@@ -17,5 +17,6 @@ def card(title: str, description: str, url: str) -> rx.Component:
             rx.heading("Ver más", size="sm"),
             href=str(url),
             is_external=True
-        )
+        ),
+        style=card_style
     )

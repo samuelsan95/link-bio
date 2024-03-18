@@ -6,10 +6,12 @@ from .fonts import Font, FontWeight
 
 # Sizes
 class Size(Enum):
+    VERY_SMALL = "0.2em"
     SMALL = "0.8em"
     MEDIUM = "1em"
     DEFAULT = "1.2em"
     LARGE = "1.5em"
+    EXTRA_LARGE = "1.7em"
     BIG = "2em"
     VERY_BIG = "4em"
     ZERO = "0px !important"
@@ -62,7 +64,13 @@ BASE_STYLE = {
 navbar_title_style = dict(
     font_family=Font.LOGO.value,
     font_weight=FontWeight.MEDIUM.value,
-    font_size=Size.LARGE.value
+    font_size=Size.LARGE.value,
+    margin_inline_start="-0.5em !important"
+)
+
+logo_navbar_style = dict(
+    margin_bottom=f"{Size.VERY_SMALL.value} !important",
+    margin_inline_start="-0.5em !important"
 )
 
 button_title_style = dict(
@@ -84,11 +92,8 @@ title_style = dict(
     padding_top = Size.DEFAULT.value
 )
 
-card_image_style = dict(
-    width = "100%",
-    max_width = "280px",
-    max_heights = "280px",
-    margin_bottom = Size.MEDIUM.value
+card_style = dict(
+    cursor="pointer"
 )
 
 # Constants
