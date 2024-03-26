@@ -1,5 +1,19 @@
 {
     "title_last_publications": "Últimas publicaciones",
     "linkedin_title": "Linkedin",
-    "linkedin_description": "Curriculum online"
+    "linkedin_description": "Curriculum online",
+    "title_links": "Enlaces de interés",
+    "github_title": "Github",
+    "github_description": "Proyectos personales",
+    "medium_title": "Medium",
+    "medium_description": "Todos mis articulos relacionados con programación",
+    "codewars_title": "Codewars",
+    "codewars_description": "Desafíos resueltos",
+    "title_contact": "Contacto",
+    "email_title": "Email",
+    "alt_img_logo": "Logo SamuelSan",
+    "footer_text": "Dando vida al código.",
+    "info_text_1": "Años de experiencia",
+    "info_text_2": "Participación en proyectos",
+    "bio_text": "Soy Samuel, un entusiasta desarrollador web con más de cinco años de experiencia en el ámbito tecnológico. Durante mi trayectoria, he trabajado con diversas tecnologías y lenguajes. A continuación os dejo enlaces que pueden ser de interés y utilidad."
 }

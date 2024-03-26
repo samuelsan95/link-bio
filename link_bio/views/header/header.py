@@ -2,7 +2,9 @@ import reflex as rx
 from link_bio.styles.styles import Size
 from link_bio.components.info_text import info_text
 from link_bio.styles.colors import TextColor, Color
+from link_bio.services.language_service import Translator
 
+translator = Translator()
 
 
 def header() -> rx.Component:
@@ -33,16 +35,14 @@ def header() -> rx.Component:
             spacing=Size.DEFAULT.value
         ),
         rx.flex(
-            info_text("7+", "Años de experiencia"),
+            info_text("7+", translator.translate("info_text_1")),
             rx.spacer(),
-            info_text("20+", "Participación en proyectos"),
+            info_text("20+", translator.translate("info_text_2")),
             rx.spacer(),
             width="100%"
         ),
         rx.text(
-            """Soy Samuel, un entusiasta desarrollador web con más de cinco años de experiencia en el ámbito tecnológico.
-            Durante mi trayectoria, he trabajado con diversas tecnologías y lenguajes. A continuación os dejo enlaces que pueden ser
-            de interés y utilidad.""",
+            translator.translate("bio_text"),
             color=TextColor.BODY.value
         ),
         spacing=Size.BIG.value,

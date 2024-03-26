@@ -7,6 +7,9 @@ from link_bio.styles.styles import Size
 from link_bio.constants import LINKEDIN_URL, GITHUB_URL, MEDIUM_URL, CODEWARS_URL, EMAIL_URL
 from link_bio.services.publication_service import get_last_publications_medium, get_publication_description
 from link_bio.services.language_service import Translator
+from link_bio.utils.utils import shorten_string
+
+MAX_CHARACTERES = 200
 
 translator = Translator()
 publications: List[Dict[str, str]] = get_last_publications_medium()
@@ -17,48 +20,58 @@ def links() -> rx.Component:
         title(translator.translate("title_last_publications")),
         rx.responsive_grid(
             card(
-                publications[0]['title'],
-                get_publication_description(publications[0]),
+                translator.external_translate(publications[0]['title']),
+                translator.external_translate(
+                    shorten_string(
+                        get_publication_description(publications[0]), 
+                        MAX_CHARACTERES
+                    )
+                ),
                 publications[0]['link']
             ),
             card(
-                publications[1]['title'],
-                get_publication_description(publications[1]),
+                translator.external_translate(publications[1]['title']),
+                translator.external_translate(
+                    shorten_string(
+                        get_publication_description(publications[1]), 
+                        MAX_CHARACTERES
+                    )
+                ),
                 publications[1]['link']
             ),
             columns=[1, 2],
             width="100%",
             spacing=Size.MEDIUM.value
         ),
-        title("Enlaces de interés"),
+        title(translator.translate("title_links")),
         link_button(
-            "Linkedin",
-            "Curriculum online",
+            translator.translate("linkedin_title"),
+            translator.translate("linkedin_description"),
             "icons/linkedin.svg",
             LINKEDIN_URL
         ),
         link_button(
-            "Github",
-            "Proyectos personales",
+            translator.translate("github_title"),
+            translator.translate("github_description"),
             "icons/github.svg",
             GITHUB_URL
         ),
         link_button(
-            "Medium",
-            "Todos mis articulos relacionados con programación",
+            translator.translate("medium_title"),
+            translator.translate("medium_description"),
             "icons/medium.svg",
             MEDIUM_URL
         ),
         link_button(
-            "Codewars",
-            "Desafíos resueltos",
+            translator.translate("codewars_title"),
+            translator.translate("codewars_description"),
             "icons/codewars.svg",
             CODEWARS_URL
         ),
 
-        title("Contacto"),
+        title(translator.translate("title_contact")),
         link_button(
-            "Email",
+            translator.translate("email_title"),
             EMAIL_URL,
             "icons/email.svg",
             f"mailto::{EMAIL_URL}"
