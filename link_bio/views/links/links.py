@@ -4,7 +4,7 @@ from link_bio.components.link_button import link_button
 from link_bio.components.card import card
 from link_bio.components.title import title
 from link_bio.styles.styles import Size
-from link_bio.constants import LINKEDIN_URL, GITHUB_URL, MEDIUM_URL, CODEWARS_URL, EMAIL_URL
+from link_bio.constants import CLASSGAP_URL, LINKEDIN_URL, GITHUB_URL, MEDIUM_URL, CODEWARS_URL, EMAIL_URL
 from link_bio.services.publication_service import get_last_publications_medium, get_publication_description
 from link_bio.services.language_service import Translator
 
@@ -31,6 +31,12 @@ def links() -> rx.Component:
             spacing=Size.MEDIUM.value
         ),
         title("Enlaces de interés"),
+        link_button(
+            "Clases de programación",
+            "Reserva ya tu primera clase gratis!",
+            "icons/classgap.svg",
+            CLASSGAP_URL
+        ),
         link_button(
             "Linkedin",
             "Curriculum online",
