@@ -11,15 +11,22 @@ class Size(Enum):
     MEDIUM = "1em"
     DEFAULT = "1.2em"
     LARGE = "1.5em"
-    EXTRA_LARGE = "1.7em"
+    EXTRA_LARGE = "1.8em"
     BIG = "2em"
     VERY_BIG = "4em"
     ZERO = "0px !important"
 
+class SizeReflex(Enum):
+    SMALL = "3"
+    MEDIUM = "5"
+    BIG = "7"
+    VERY_BIG = "8"
+
 
 STYLESHEETS = [
     "https://fonts.googleapis.com/css2?family=Nunito:wght@300;500&display=swap",
-    "https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap"
+    "https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap",
+    "/styles.css"
 ]
 
 # Styles general
@@ -27,12 +34,12 @@ BASE_STYLE = {
     "font_family": Font.DEFAULT.value,
     "font_weight": FontWeight.LIGHT.value,
     "background_color": Color.BACKGROUND.value,
-    rx.Heading: {
+    rx.heading: {
         "color": TextColor.HEADER.value,
         "font_family": Font.TITLE.value,
         "font_weight": FontWeight.MEDIUM.value,
     },
-    rx.Button: {
+    rx.button: {
         "width": "100%",
         "height": "100%",
         "display": "block",
@@ -46,11 +53,11 @@ BASE_STYLE = {
             "background_color": Color.SECONDARY.value,
         }
     },
-    rx.Link: {
+    rx.link: {
         "text_decoration": "none",
         "_hover": {}
     },
-    rx.Card: {
+    rx.card: {
         "border_radius": Size.DEFAULT.value,
         "background_color": Color.CONTENT.value,
         "color": TextColor.HEADER.value,
@@ -76,14 +83,12 @@ logo_navbar_style = dict(
 button_title_style = dict(
     font_family = Font.TITLE.value,
     font_weight=FontWeight.MEDIUM.value,
-    font_size = Size.DEFAULT.value,
     color = TextColor.HEADER.value
 )
 
 button_body_style = dict(
     font_family = Font.DEFAULT.value,
     font_weight=FontWeight.LIGHT.value,
-    font_size = Size.MEDIUM.value,
     color = TextColor.BODY.value
 )
 
@@ -92,7 +97,7 @@ title_style = dict(
     padding_top = Size.DEFAULT.value
 )
 
-card_style = dict(
+link_style = dict(
     cursor="pointer"
 )
 

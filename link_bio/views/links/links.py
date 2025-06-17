@@ -3,7 +3,7 @@ from typing import List, Dict
 from link_bio.components.link_button import link_button
 from link_bio.components.card import card
 from link_bio.components.title import title
-from link_bio.styles.styles import Size
+from link_bio.styles.styles import SizeReflex
 from link_bio.constants import LINKEDIN_URL, GITHUB_URL, MEDIUM_URL, CODEWARS_URL, EMAIL_URL
 from link_bio.services.publication_service import get_last_publications_medium, get_publication_description
 from link_bio.services.language_service import Translator
@@ -18,14 +18,12 @@ publications: List[Dict[str, str]] = get_last_publications_medium()
 def links() -> rx.Component:
     return rx.vstack(
         title(translator.translate("title_last_publications")),
-        rx.responsive_grid(
+        rx.grid(
             card(
-                translator.external_translate(publications[0]['title']),
-                translator.external_translate(
-                    shorten_string(
-                        get_publication_description(publications[0]), 
-                        MAX_CHARACTERES
-                    )
+                publications[0]['title'],
+                shorten_string(
+                    get_publication_description(publications[0]), 
+                    MAX_CHARACTERES
                 ),
                 publications[0]['link']
             ),
@@ -39,9 +37,9 @@ def links() -> rx.Component:
                 ),
                 publications[1]['link']
             ),
-            columns=[1, 2],
+            columns=rx.breakpoints(sm="1", md="2"),
             width="100%",
-            spacing=Size.MEDIUM.value
+            spacing=SizeReflex.MEDIUM.value
         ),
         title(translator.translate("title_links")),
         link_button(
@@ -78,5 +76,5 @@ def links() -> rx.Component:
         ),
 
         width="100%",
-        spacing=Size.MEDIUM.value
+        spacing=SizeReflex.MEDIUM.value
     )

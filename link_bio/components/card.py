@@ -1,18 +1,26 @@
 import reflex as rx
-from link_bio.styles.styles import card_style
+from link_bio.styles.styles import link_style
+from link_bio.styles.styles import SizeReflex
 
 
 def card(title: str, description: str, url: str) -> rx.Component:
-
     return rx.card(
-        body=rx.vstack(
-            rx.text(description),
+        rx.flex(
+            rx.heading(title, size=SizeReflex.MEDIUM.value, height="75px"),
+            rx.text(description, size=SizeReflex.SMALL.value),
+            rx.link(
+                rx.heading("Ver más", size=SizeReflex.SMALL.value),
+                href=url,
+                is_external=True,
+                style=link_style
+            ),
+            direction="column",
+            spacing=SizeReflex.BIG.value
         ),
-        header=rx.heading(title, size="md", height="75px"),
-        footer=rx.link(
-            rx.heading("Ver más", size="sm"),
-            href=str(url),
-            is_external=True
-        ),
-        style=card_style
+        style={
+            "&::after": {
+                "borderRadius": '1.2em'
+            }
+        },
+        size="3"
     )

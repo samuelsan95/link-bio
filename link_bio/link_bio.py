@@ -33,4 +33,3 @@ app.add_page(
     description="Mi nombre es Samuel y soy un desarrollador web apasionado del mundo tecnológico, con una experiencia de más de 5 años",
     image="avatar.jpeg"
 )
-app.compile()

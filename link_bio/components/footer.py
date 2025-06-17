@@ -6,7 +6,7 @@ from link_bio.services.language_service import Translator
 translator = Translator()
 
 def footer() -> rx.Component:
-    return rx.vstack(
+    return rx.flex(
         rx.image(
             src="logo.png",
             height=Size.VERY_BIG.value,
@@ -16,7 +16,9 @@ def footer() -> rx.Component:
             translator.translate("footer_text"),
             font_size=Size.MEDIUM.value
         ),
-        margin_bottom=Size.BIG.value,
         padding_bottom=Size.BIG.value,
-        color=TextColor.FOOTER.value
+        color=TextColor.FOOTER.value,
+        direction="column",
+        align="center",
+        width="100%"
     )
