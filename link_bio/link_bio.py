@@ -25,7 +25,8 @@ def index() -> rx.Component:
 
 app = rx.App(
     stylesheets=styles.STYLESHEETS,
-    style=styles.BASE_STYLE
+    style=styles.BASE_STYLE,
+    enable_state=False
 )
 app.add_page(
     index,
@@ -33,3 +34,5 @@ app.add_page(
     description="Mi nombre es Samuel y soy un desarrollador web apasionado del mundo tecnológico, con una experiencia de más de 5 años",
     image="avatar.jpeg"
 )
+
+
