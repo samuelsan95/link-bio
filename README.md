@@ -14,7 +14,7 @@ python3 -m venv .venv
 
 Nos metemos en el entorno virtual
 ```
-source venv/bin/activate
+source .venv/bin/activate
 ```
 
 Instalamos las dependencias si no lo estan aun
