@@ -44,10 +44,6 @@ jobs:
         run: |
           unzip -o frontend.zip
           rm -f frontend.zip
-          cp vercel.json public/
-          mv public/* .
-          mv public/.* . 2>/dev/null || true
-          rmdir public
 
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
