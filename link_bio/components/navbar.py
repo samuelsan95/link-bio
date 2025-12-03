@@ -4,7 +4,7 @@ from link_bio.styles.colors import Color
 from link_bio.components.selector_language import selector_language
 
 
-def navbar() -> rx.Component:
+def navbar(lang: str = "es") -> rx.Component:
     return rx.hstack(
         rx.flex(
             rx.image(
@@ -35,7 +35,7 @@ def navbar() -> rx.Component:
             spacing="0"
         ),
         rx.spacer(),
-        selector_language(),
+        selector_language(lang),
         position="sticky",
         bg=Color.CONTENT.value,
         padding_x=Size.BIG.value,

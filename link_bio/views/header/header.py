@@ -5,7 +5,7 @@ from link_bio.styles.colors import TextColor, Color
 from link_bio.services.language_service import t
 
 
-def header() -> rx.Component:
+def header(lang: str = "es") -> rx.Component:
     return rx.vstack(
         rx.flex(
             rx.avatar(
@@ -36,15 +36,15 @@ def header() -> rx.Component:
             align="center"
         ),
         rx.flex(
-            info_text("10+", t("info_text_1")),
+            info_text("10+", t("info_text_1", lang)),
             rx.spacer(),
-            info_text("20+", t("info_text_2")),
+            info_text("20+", t("info_text_2", lang)),
             rx.spacer(),
             width="100%",
             direction="row"
         ),
         rx.text(
-            t("bio_text"),
+            t("bio_text", lang),
             color=TextColor.BODY.value
         ),
         spacing=SizeReflex.BIG.value,
