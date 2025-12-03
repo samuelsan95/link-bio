@@ -38,6 +38,7 @@ jobs:
       - name: Export frontend
         run: |
           source .venv/bin/activate
+          export REFLEX_API_URL="https://samuelsan.vercel.app"
           reflex export --frontend-only
 
       - name: Prepare deployment files
