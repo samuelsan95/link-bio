@@ -2,9 +2,7 @@ import reflex as rx
 from link_bio.styles.styles import Size, SizeReflex
 from link_bio.components.info_text import info_text
 from link_bio.styles.colors import TextColor, Color
-from link_bio.services.language_service import Translator
-
-translator = Translator()
+from link_bio.services.language_service import t
 
 
 def header() -> rx.Component:
@@ -38,17 +36,18 @@ def header() -> rx.Component:
             align="center"
         ),
         rx.flex(
-            info_text("7+", translator.translate("info_text_1")),
+            info_text("10+", t("info_text_1")),
             rx.spacer(),
-            info_text("20+", translator.translate("info_text_2")),
+            info_text("20+", t("info_text_2")),
             rx.spacer(),
             width="100%",
             direction="row"
         ),
         rx.text(
-            translator.translate("bio_text"),
+            t("bio_text"),
             color=TextColor.BODY.value
         ),
         spacing=SizeReflex.BIG.value,
         align_items="start"
     )
+
