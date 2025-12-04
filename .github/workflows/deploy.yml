@@ -38,12 +38,17 @@ jobs:
       - name: Export frontend
         run: |
           source .venv/bin/activate
-          reflex export
+          reflex export --frontend-only
 
       - name: Prepare deployment files
         run: |
           unzip -o frontend.zip
           rm -f frontend.zip
+
+          # Disable WebSocket connection in generated JS files
+          # This prevents the "connecting to backend" error on static deployments
+          find . -type f -name "*.js" -exec sed -i 's/socket=new WebSocket/socket=null;return;new WebSocket/g' {} +
+          find . -type f -name "*.js" -exec sed -i 's/socket.onopen/if(socket)socket.onopen/g' {} +
 
           # 🚨 NUEVOS COMANDOS DE MOVIMIENTO
 
