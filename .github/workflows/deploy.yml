@@ -52,6 +52,7 @@ jobs:
           if [ -d "link_bio" ]; then
              echo "Moviendo el contenido de la carpeta 'link_bio' a la raíz."
              # Mueve todo el contenido de la carpeta generada a la raíz
+             rm -rf __pycache__
              mv link_bio/* .
              # Opcional: Elimina la carpeta vacía si se movió todo
              rmdir link_bio
