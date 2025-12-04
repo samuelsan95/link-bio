@@ -38,6 +38,7 @@ jobs:
       - name: Export frontend
         run: |
           source .venv/bin/activate
+          API_URL=/
           reflex export --frontend-only
 
       - name: Prepare deployment files
