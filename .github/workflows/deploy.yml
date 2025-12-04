@@ -38,13 +38,29 @@ jobs:
       - name: Export frontend
         run: |
           source .venv/bin/activate
-          API_URL=/
           reflex export --frontend-only
 
       - name: Prepare deployment files
         run: |
           unzip -o frontend.zip
           rm -f frontend.zip
+
+          # 🚨 NUEVOS COMANDOS DE MOVIMIENTO
+
+          # La exportación de Reflex puede crear una carpeta con el nombre de la app (ej: 'link_bio').
+          # 1. Busca la carpeta generada (ajusta 'link_bio' al nombre real de tu app si es diferente)
+          if [ -d "link_bio" ]; then
+             echo "Moviendo el contenido de la carpeta 'link_bio' a la raíz."
+             # Mueve todo el contenido de la carpeta generada a la raíz
+             mv link_bio/* .
+             # Opcional: Elimina la carpeta vacía si se movió todo
+             rmdir link_bio
+          # Reflex a veces extrae los contenidos de la carpeta '.next' a la raíz si no es un proyecto Next.js
+          elif [ -d "_next" ]; then
+             echo "Contenido ya en la raíz, o listo para Vercel."
+          else
+             echo "ADVERTENCIA: Estructura de exportación inesperada. Asegúrate de que los archivos Next.js están en la raíz."
+          fi
 
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
