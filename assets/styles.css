@@ -2,3 +2,11 @@ body {
     padding: 0 !important;
     margin: 0;
 }
+
+section[aria-label="Notifications alt+T"] {
+    display: none;
+}
+
+div[title="Connection Error: timeout"] {
+    display: none;
+}
