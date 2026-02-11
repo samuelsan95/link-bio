@@ -65,16 +65,14 @@ jobs:
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
 
-      - name: Pull Vercel environment
-        working-directory: ./output
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Clean any .vercel directories
+        run: |
+          find . -type d -name ".vercel" -exec rm -rf {} + 2>/dev/null || true
 
       - name: Deploy to Vercel (Production)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        working-directory: ./output
-        run: vercel deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy ./output --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy to Vercel (Preview)
         if: github.event_name == 'pull_request'
-        working-directory: ./output
-        run: vercel deploy --yes --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy ./output --yes --token=${{ secrets.VERCEL_TOKEN }}
