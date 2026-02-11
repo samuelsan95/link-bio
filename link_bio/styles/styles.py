@@ -49,6 +49,7 @@ BASE_STYLE = {
         "white_space": "normal",
         "text_align": "start",
         "color": TextColor.HEADER.value,
+        "transition": "background-color 0.2s ease",
         "_hover": {
             "background_color": Color.SECONDARY.value,
         }
@@ -61,6 +62,7 @@ BASE_STYLE = {
         "border_radius": Size.DEFAULT.value,
         "background_color": Color.CONTENT.value,
         "color": TextColor.HEADER.value,
+        "transition": "background-color 0.2s ease",
         "_hover": {
             "background_color": Color.SECONDARY.value,
         }
