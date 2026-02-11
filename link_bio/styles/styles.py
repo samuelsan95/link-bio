@@ -24,8 +24,8 @@ class SizeReflex(Enum):
 
 
 STYLESHEETS = [
-    "https://fonts.googleapis.com/css2?family=Nunito:wght@300;500&display=swap",
-    "https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap",
+    "https://fonts.googleapis.com/css2?family=Nunito:wght@300;500&display=swap&font-display=swap",
+    "https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap&font-display=swap",
     "/styles.css"
 ]
 
