@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -29,72 +33,48 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
-      - name: Create virtual environment
-        run: python -m venv .venv
-
       - name: Install dependencies
         run: |
+          python -m venv .venv
           source .venv/bin/activate
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Initialize Reflex
+      - name: Build frontend
         run: |
           source .venv/bin/activate
           reflex init
-
-      - name: Export frontend
-        run: |
-          source .venv/bin/activate
           reflex export --frontend-only
 
-      - name: Prepare deployment files
+      - name: Prepare output directory
         run: |
-          unzip -o frontend.zip
+          mkdir -p output
+          unzip -o frontend.zip -d output
           rm -f frontend.zip
 
-          # Disable WebSocket connection in generated JS files
-          # This prevents the "connecting to backend" error on static deployments
-          find . -type f -name "*.js" -exec sed -i 's/socket=new WebSocket/socket=null;return;new WebSocket/g' {} +
-          find . -type f -name "*.js" -exec sed -i 's/socket.onopen/if(socket)socket.onopen/g' {} +
-
-          # 🚨 NUEVOS COMANDOS DE MOVIMIENTO
-
-          # La exportación de Reflex puede crear una carpeta con el nombre de la app (ej: 'link_bio').
-          # 1. Busca la carpeta generada (ajusta 'link_bio' al nombre real de tu app si es diferente)
-          if [ -d "link_bio" ]; then
-             echo "Moviendo el contenido de la carpeta 'link_bio' a la raíz."
-             # Mueve todo el contenido de la carpeta generada a la raíz
-             rm -rf __pycache__
-             mv link_bio/* .
-             # Opcional: Elimina la carpeta vacía si se movió todo
-             rmdir link_bio
-          # Reflex a veces extrae los contenidos de la carpeta '.next' a la raíz si no es un proyecto Next.js
-          elif [ -d "_next" ]; then
-             echo "Contenido ya en la raíz, o listo para Vercel."
-          else
-             echo "ADVERTENCIA: Estructura de exportación inesperada. Asegúrate de que los archivos Next.js están en la raíz."
+          # Move app subfolder contents to output root if needed
+          if [ -d "output/link_bio" ]; then
+            mv output/link_bio/* output/
+            rmdir output/link_bio
           fi
+
+          # Disable WebSocket connections for static deployment
+          find output -type f -name "*.js" -exec sed -i 's/socket=new WebSocket/socket=null;return;new WebSocket/g' {} +
+          find output -type f -name "*.js" -exec sed -i 's/socket.onopen/if(socket)socket.onopen/g' {} +
 
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
 
-      - name: Pull Vercel project settings
+      - name: Pull Vercel environment
+        working-directory: ./output
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Deploy to Vercel (Production)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: vercel deploy --prebuilt --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        working-directory: ./output
+        run: vercel deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy to Vercel (Preview)
         if: github.event_name == 'pull_request'
-        run: vercel deploy --prebuilt --yes --token=${{ secrets.VERCEL_TOKEN }}
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        working-directory: ./output
+        run: vercel deploy --yes --token=${{ secrets.VERCEL_TOKEN }}
