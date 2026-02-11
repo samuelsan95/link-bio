@@ -5,6 +5,5 @@ config = rx.Config(
     tailwind=None,
     show_built_with_reflex=False,
     disable_plugins=['reflex.plugins.sitemap.SitemapPlugin'],
-    _no_sio=True,
-    api_url='localhost:3000'
+    _no_sio=True
 )

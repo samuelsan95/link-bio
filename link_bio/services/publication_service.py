@@ -8,13 +8,16 @@ def get_last_publications_medium():
         'Content-Type': 'application/json',
         'Accept': 'application/json',
     }
-    response = requests.get(url, headers=headers)
-
-    if response.status_code == 200:
-        data = response.json()
-        return data['items']
-    else:
-        print(f"Error: {response.status_code} - {response.text}")
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            return data['items']
+        else:
+            print(f"Error: {response.status_code} - {response.text}")
+            return []
+    except requests.RequestException as e:
+        print(f"Error fetching Medium publications: {e}")
         return []
 
 
@@ -23,9 +26,9 @@ def get_publication_image(publication):
         description = publication['description']
         regex = r'src="([^"]*)"'
         match = re.search(regex, description)
-        
+
         if match:
-            return match.group(1)  
+            return match.group(1)
     return "icons/medium.svg"
 
 
@@ -34,7 +37,7 @@ def get_publication_description(publication):
         description = publication['description']
         regex = r'<p>([^"]*)</p>'
         match = re.search(regex, description)
-        
+
         if match:
             return remove_html_code(match.group(1))
     return ""

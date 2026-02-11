@@ -6,12 +6,12 @@ from link_bio.components.title import title
 from link_bio.styles.styles import SizeReflex
 from link_bio.constants import LINKEDIN_URL, GITHUB_URL, MEDIUM_URL, CODEWARS_URL, EMAIL_URL
 from link_bio.services.publication_service import get_last_publications_medium, get_publication_description
-from link_bio.services.language_service import Translator, t
+from link_bio.services.language_service import t, _translator
 from link_bio.utils.utils import shorten_string
 
 MAX_CHARACTERES = 200
 
-translator = Translator()
+translator = _translator
 publications: List[Dict[str, str]] = get_last_publications_medium()
 
 
@@ -44,7 +44,8 @@ def links(lang: str = "es") -> rx.Component:
                                 "en"
                             )
                         ),
-                        publications[0]['link']
+                        publications[0]['link'],
+                        lang
                     ),
                     card(
                         rx.cond(
@@ -66,7 +67,8 @@ def links(lang: str = "es") -> rx.Component:
                                 "en"
                             )
                         ),
-                        publications[1]['link']
+                        publications[1]['link'],
+                        lang
                     ),
                     columns=rx.breakpoints(sm="1", md="2"),
                     width="100%",
@@ -108,7 +110,7 @@ def links(lang: str = "es") -> rx.Component:
             t("email_title", lang),
             EMAIL_URL,
             "icons/email.svg",
-            f"mailto::{EMAIL_URL}"
+            f"mailto:{EMAIL_URL}"
         ),
 
         width="100%",
