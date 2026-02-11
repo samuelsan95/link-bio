@@ -8,10 +8,6 @@ on:
     branches:
       - main
 
-env:
-  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -46,33 +42,37 @@ jobs:
           reflex init
           reflex export --frontend-only
 
-      - name: Prepare output directory
+      - name: Prepare deployment files
         run: |
-          mkdir -p output
-          unzip -o frontend.zip -d output
+          unzip -o frontend.zip
           rm -f frontend.zip
 
-          # Move app subfolder contents to output root if needed
-          if [ -d "output/link_bio" ]; then
-            mv output/link_bio/* output/
-            rmdir output/link_bio
+          # Move app subfolder contents to root if needed
+          if [ -d "link_bio" ]; then
+            rm -rf __pycache__
+            mv link_bio/* .
+            rmdir link_bio
+          elif [ -d "_next" ]; then
+            echo "Content already at root."
           fi
 
           # Disable WebSocket connections for static deployment
-          find output -type f -name "*.js" -exec sed -i 's/socket=new WebSocket/socket=null;return;new WebSocket/g' {} +
-          find output -type f -name "*.js" -exec sed -i 's/socket.onopen/if(socket)socket.onopen/g' {} +
+          find . -type f -name "*.js" -exec sed -i 's/socket=new WebSocket/socket=null;return;new WebSocket/g' {} +
+          find . -type f -name "*.js" -exec sed -i 's/socket.onopen/if(socket)socket.onopen/g' {} +
 
       - name: Install Vercel CLI
-        run: npm install -g vercel@latest
-
-      - name: Clean any .vercel directories
-        run: |
-          find . -type d -name ".vercel" -exec rm -rf {} + 2>/dev/null || true
+        run: npm install -g vercel@49.1.1
 
       - name: Deploy to Vercel (Production)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: vercel deploy ./output --prod --yes --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Deploy to Vercel (Preview)
         if: github.event_name == 'pull_request'
-        run: vercel deploy ./output --yes --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel --token=${{ secrets.VERCEL_TOKEN }}
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
