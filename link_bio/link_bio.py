@@ -8,13 +8,7 @@ import link_bio.styles.styles as styles
 
 def _page(lang: str) -> rx.Component:
     return rx.fragment(
-        rx.head(
-            rx.html(
-                "<link rel='preconnect' href='https://fonts.googleapis.com' />",
-                "<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />",
-                dangerously_set_inner_html={"__html": ""}
-            )
-        ),
+        rx.script(src="/manifest.json", type="application/manifest+json"),
         rx.box(
             navbar(lang),
             rx.center(
@@ -53,9 +47,6 @@ def _page(lang: str) -> rx.Component:
         {"name": "theme-color", "content": "#1a1a2e"},
         {"http-equiv": "Content-Language", "content": "es"},
     ],
-    script_tags=[
-        rx.script(src="/manifest.json", type="application/manifest+json"),
-    ],
 )
 def index() -> rx.Component:
     return _page("es")
@@ -81,9 +72,6 @@ def index() -> rx.Component:
         {"name": "twitter:image", "content": "https://samuelsan.es/avatar.jpeg"},
         {"name": "theme-color", "content": "#1a1a2e"},
         {"http-equiv": "Content-Language", "content": "en"},
-    ],
-    script_tags=[
-        rx.script(src="/manifest.json", type="application/manifest+json"),
     ],
 )
 def index_en() -> rx.Component:
