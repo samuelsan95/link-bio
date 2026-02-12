@@ -10,7 +10,9 @@ def navbar(lang: str = "es") -> rx.Component:
             rx.image(
                 src="logo.png",
                 height=Size.EXTRA_LARGE.value,
+                width="auto",
                 alt="Logo SamuelSan",
+                loading="eager",
                 style=logo_navbar_style
             ),
             rx.text(
@@ -22,7 +24,9 @@ def navbar(lang: str = "es") -> rx.Component:
             rx.image(
                 src="logo.png",
                 height=Size.EXTRA_LARGE.value,
+                width="auto",
                 alt="Logo SamuelSan",
+                loading="eager",
                 style=logo_navbar_style
             ),
             rx.text(

@@ -17,7 +17,8 @@ def header(lang: str = "es") -> rx.Component:
                 padding="2px",
                 border="2px",
                 border_color=Color.PRIMARY.value,
-                radius="full"
+                radius="full",
+                loading="eager"
             ),
             rx.vstack(
                 rx.heading(
