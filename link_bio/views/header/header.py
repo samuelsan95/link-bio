@@ -8,17 +8,24 @@ from link_bio.services.language_service import t
 def header(lang: str = "es") -> rx.Component:
     return rx.vstack(
         rx.flex(
-            rx.avatar(
-                src="avatar.jpeg",
-                name="Samuel Sanchez",
-                size=SizeReflex.BIG.value,
+            rx.box(
+                rx.image(
+                    src="avatar.jpeg",
+                    alt=t("avatar_alt", lang),
+                    width="100%",
+                    height="100%",
+                    border_radius="9999px",
+                    object_fit="cover",
+                    loading="eager"
+                ),
+                width="96px",
+                height="96px",
                 background_color=Color.CONTENT.value,
-                color=TextColor.HEADER.value,
                 padding="2px",
-                border="2px",
+                border="2px solid",
                 border_color=Color.PRIMARY.value,
-                radius="full",
-                loading="eager"
+                border_radius="9999px",
+                flex_shrink="0"
             ),
             rx.vstack(
                 rx.heading(

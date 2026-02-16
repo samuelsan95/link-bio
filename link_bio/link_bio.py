@@ -10,18 +10,24 @@ def _page(lang: str) -> rx.Component:
     return rx.fragment(
         rx.script(src="/manifest.json", type="application/manifest+json"),
         rx.box(
-            navbar(lang),
-            rx.center(
-                rx.vstack(
-                    header(lang),
-                    links(lang),
-                    max_width=styles.MAX_WIDTH,
-                    width="100%",
-                    margin_y=styles.Size.BIG.value,
-                    padding=styles.Size.BIG.value
+            rx.el.nav(
+                navbar(lang)
+            ),
+            rx.el.main(
+                rx.center(
+                    rx.vstack(
+                        header(lang),
+                        links(lang),
+                        max_width=styles.MAX_WIDTH,
+                        width="100%",
+                        margin_y=styles.Size.BIG.value,
+                        padding=styles.Size.BIG.value
+                    )
                 )
             ),
-            footer(lang)
+            rx.el.footer(
+                footer(lang)
+            )
         )
     )
 

@@ -2,11 +2,11 @@ from enum import Enum
 
 class Color(Enum):
     PRIMARY = "#D3E29F"
-    SECONDARY = "#9DA3D2"
+    SECONDARY = "#7B82B8"  # Oscurecido para mejor contraste con texto claro
     BACKGROUND = "#181B34"
-    CONTENT = "#8F96CC"
+    CONTENT = "#6B73A8"  # Oscurecido para mejor contraste con texto claro
 
 class TextColor(Enum):
-    HEADER = "#F1F2F4"
-    BODY = "#C3C7CB"
-    FOOTER = "#A3ABB2"
+    HEADER = "#FFFFFF"  # Blanco puro para máximo contraste
+    BODY = "#E8EAED"  # Más claro para mejor contraste sobre fondos oscuros
+    FOOTER = "#C5C9CE"  # Aclarado para cumplir ratio 4.5:1
