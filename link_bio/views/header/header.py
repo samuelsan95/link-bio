@@ -16,7 +16,9 @@ def header(lang: str = "es") -> rx.Component:
                     height="100%",
                     border_radius="9999px",
                     object_fit="cover",
-                    loading="eager"
+                    loading="eager",
+                    html_width="192",
+                    html_height="192"
                 ),
                 width="96px",
                 height="96px",

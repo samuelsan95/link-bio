@@ -13,6 +13,8 @@ def navbar(lang: str = "es") -> rx.Component:
                 width="auto",
                 alt="Logo SamuelSan",
                 loading="eager",
+                html_width="180",
+                html_height="127",
                 style=logo_navbar_style
             ),
             rx.text(
@@ -27,6 +29,8 @@ def navbar(lang: str = "es") -> rx.Component:
                 width="auto",
                 alt="Logo SamuelSan",
                 loading="eager",
+                html_width="180",
+                html_height="127",
                 style=logo_navbar_style
             ),
             rx.text(

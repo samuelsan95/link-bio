@@ -9,6 +9,8 @@ import link_bio.styles.styles as styles
 def _page(lang: str) -> rx.Component:
     return rx.fragment(
         rx.script(src="/manifest.json", type="application/manifest+json"),
+        rx.el.link(rel="preconnect", href="https://fonts.googleapis.com"),
+        rx.el.link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin="anonymous"),
         rx.box(
             rx.el.nav(
                 navbar(lang)
