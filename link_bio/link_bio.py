@@ -9,19 +9,27 @@ import link_bio.styles.styles as styles
 def _page(lang: str) -> rx.Component:
     return rx.fragment(
         rx.script(src="/manifest.json", type="application/manifest+json"),
+        rx.el.link(rel="preconnect", href="https://fonts.googleapis.com"),
+        rx.el.link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin="anonymous"),
         rx.box(
-            navbar(lang),
-            rx.center(
-                rx.vstack(
-                    header(lang),
-                    links(lang),
-                    max_width=styles.MAX_WIDTH,
-                    width="100%",
-                    margin_y=styles.Size.BIG.value,
-                    padding=styles.Size.BIG.value
+            rx.el.nav(
+                navbar(lang)
+            ),
+            rx.el.main(
+                rx.center(
+                    rx.vstack(
+                        header(lang),
+                        links(lang),
+                        max_width=styles.MAX_WIDTH,
+                        width="100%",
+                        margin_y=styles.Size.BIG.value,
+                        padding=styles.Size.BIG.value
+                    )
                 )
             ),
-            footer(lang)
+            rx.el.footer(
+                footer(lang)
+            )
         )
     )
 

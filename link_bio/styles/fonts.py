@@ -2,9 +2,9 @@ from enum import Enum
 
 
 class Font(Enum):
-    DEFAULT = "Nunito"
-    TITLE = "Nunito"
-    LOGO = "Ubuntu"
+    DEFAULT = "Nunito, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    TITLE = "Nunito, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    LOGO = "Ubuntu, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
 
 
 class FontWeight(Enum):
