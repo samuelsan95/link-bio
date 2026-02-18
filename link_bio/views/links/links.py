@@ -4,7 +4,7 @@ from link_bio.components.link_button import link_button
 from link_bio.components.card import card
 from link_bio.components.title import title
 from link_bio.styles.styles import SizeReflex
-from link_bio.constants import LINKEDIN_URL, GITHUB_URL, MEDIUM_URL, CODEWARS_URL, EMAIL_URL
+from link_bio.constants import LINKEDIN_URL, GITHUB_URL, MEDIUM_URL, CODEWARS_URL, EMAIL_URL, CV_URL
 from link_bio.services.publication_service import get_last_publications_medium, get_publication_description
 from link_bio.services.language_service import t, _translator
 from link_bio.utils.utils import shorten_string
@@ -80,6 +80,12 @@ def links(lang: str = "es") -> rx.Component:
             rx.fragment()
         ),
         title(t("title_links", lang)),
+        link_button(
+            t("cv_title", lang),
+            t("cv_description", lang),
+            "icons/terminal.svg",
+            CV_URL
+        ),
         link_button(
             t("linkedin_title", lang),
             t("linkedin_description", lang),

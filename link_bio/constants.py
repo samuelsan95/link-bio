@@ -1,4 +1,4 @@
-CLASSGAP_URL = "https://www.classgap.com/me/samuel-sanchez-lopez"
+CV_URL = "https://samuelsan95.github.io/interactive-cv/"
 LINKEDIN_URL = "https://www.linkedin.com/in/samuel-sanchez-lopez/"
 GITHUB_URL = "https://github.com/samuelsan95"
 MEDIUM_URL = "https://medium.com/@samuelsan95"
