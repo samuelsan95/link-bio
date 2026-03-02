@@ -21,5 +21,7 @@
     "title_cv_interactive": "CV Interactivo",
     "cv_title": "CV Interactivo",
     "cv_description": "Curriculum interactivo como un terminal",
-    "title_projects": "Proyectos"
+    "title_projects": "Proyectos",
+    "saveup_title": "SaveUp",
+    "saveup_description": "Un proyecto diseñado para fomentar el ahorro personal"
 }

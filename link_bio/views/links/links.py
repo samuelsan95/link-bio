@@ -4,7 +4,7 @@ from link_bio.components.link_button import link_button
 from link_bio.components.card import card
 from link_bio.components.title import title
 from link_bio.styles.styles import SizeReflex
-from link_bio.constants import LINKEDIN_URL, GITHUB_URL, MEDIUM_URL, CODEWARS_URL, EMAIL_URL, CV_URL
+from link_bio.constants import LINKEDIN_URL, GITHUB_URL, MEDIUM_URL, CODEWARS_URL, EMAIL_URL, CV_URL, SAVEUP_URL
 from link_bio.services.publication_service import get_last_publications_medium, get_publication_description
 from link_bio.services.language_service import t, _translator
 from link_bio.utils.utils import shorten_string
@@ -82,9 +82,9 @@ def links(lang: str = "es") -> rx.Component:
             rx.fragment()
         ),
 
-        # Links of interest section
+        # Projects section
         rx.vstack(
-            title(t("title_links", lang)),
+            title(t("title_projects", lang)),
             link_button(
                 t("cv_title", lang),
                 t("cv_description", lang),
@@ -92,25 +92,25 @@ def links(lang: str = "es") -> rx.Component:
                 CV_URL
             ),
             link_button(
+                t("saveup_title", lang),
+                t("saveup_description", lang),
+                "icons/saveup.svg",
+                SAVEUP_URL
+            ),
+            id="projects",
+            width="100%",
+            spacing=SizeReflex.MEDIUM.value
+        ),
+
+        # Links of interest section
+        rx.vstack(
+            title(t("title_links", lang)),
+            link_button(
                 t("linkedin_title", lang),
                 t("linkedin_description", lang),
                 "icons/linkedin.svg",
                 LINKEDIN_URL
             ),
-            link_button(
-                t("medium_title", lang),
-                t("medium_description", lang),
-                "icons/medium.svg",
-                MEDIUM_URL
-            ),
-            id="links",
-            width="100%",
-            spacing=SizeReflex.MEDIUM.value
-        ),
-
-        # Projects section
-        rx.vstack(
-            title(t("title_projects", lang)),
             link_button(
                 t("github_title", lang),
                 t("github_description", lang),
@@ -118,12 +118,18 @@ def links(lang: str = "es") -> rx.Component:
                 GITHUB_URL
             ),
             link_button(
+                t("medium_title", lang),
+                t("medium_description", lang),
+                "icons/medium.svg",
+                MEDIUM_URL
+            ),
+            link_button(
                 t("codewars_title", lang),
                 t("codewars_description", lang),
                 "icons/codewars.svg",
                 CODEWARS_URL
             ),
-            id="projects",
+            id="links",
             width="100%",
             spacing=SizeReflex.MEDIUM.value
         ),
