@@ -23,7 +23,8 @@ def _page(lang: str) -> rx.Component:
                         margin_y=styles.Size.BIG.value,
                         padding=styles.Size.BIG.value
                     )
-                )
+                ),
+                padding_top="4.5em",
             ),
             rx.el.footer(
                 footer(lang)
