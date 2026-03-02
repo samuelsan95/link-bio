@@ -18,3 +18,64 @@ section[aria-label="Notifications alt+T"] {
 div[title="Connection Error: timeout"] {
     display: none;
 }
+
+/* Hamburger menu — hidden checkbox acts as toggle state */
+.nav-toggle-input {
+    display: none;
+}
+
+.hamburger-line {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+}
+
+.nav-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    border-top: 1px solid rgba(211, 226, 159, 0.15);
+}
+
+/* Mobile only: hamburger visible, desktop lang selector hidden */
+@media (max-width: 767px) {
+    .desktop-lang {
+        display: none;
+    }
+
+    .nav-toggle-input:checked ~ .nav-menu {
+        max-height: 400px;
+    }
+
+    /* Hamburger → X animation */
+    .nav-toggle-input:checked ~ * .hamburger-line:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle-input:checked ~ * .hamburger-line:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+    }
+
+    .nav-toggle-input:checked ~ * .hamburger-line:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+}
+
+/* Desktop: hide hamburger and dropdown, show lang selector inline */
+@media (min-width: 768px) {
+    .hamburger-btn {
+        display: none !important;
+    }
+
+    .nav-menu {
+        max-height: 0 !important;
+    }
+}
+
+/* Scroll offset so sticky navbar doesn't cover section headings */
+#publications,
+#projects,
+#links,
+#contact {
+    scroll-margin-top: 80px;
+}

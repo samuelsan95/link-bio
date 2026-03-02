@@ -17,8 +17,9 @@ publications: List[Dict[str, str]] = get_last_publications_medium()
 
 def links(lang: str = "es") -> rx.Component:
     has_publications = len(publications) >= 2
-    
+
     return rx.vstack(
+        # Publications section
         rx.cond(
             has_publications,
             rx.vstack(
@@ -33,12 +34,12 @@ def links(lang: str = "es") -> rx.Component:
                         rx.cond(
                             lang == "es",
                             shorten_string(
-                                get_publication_description(publications[0]), 
+                                get_publication_description(publications[0]),
                                 MAX_CHARACTERES
                             ),
                             translator.external_translate(
                                 shorten_string(
-                                    get_publication_description(publications[0]), 
+                                    get_publication_description(publications[0]),
                                     MAX_CHARACTERES
                                 ),
                                 "en"
@@ -56,12 +57,12 @@ def links(lang: str = "es") -> rx.Component:
                         rx.cond(
                             lang == "es",
                             shorten_string(
-                                get_publication_description(publications[1]), 
+                                get_publication_description(publications[1]),
                                 MAX_CHARACTERES
                             ),
                             translator.external_translate(
                                 shorten_string(
-                                    get_publication_description(publications[1]), 
+                                    get_publication_description(publications[1]),
                                     MAX_CHARACTERES
                                 ),
                                 "en"
@@ -74,57 +75,77 @@ def links(lang: str = "es") -> rx.Component:
                     width="100%",
                     spacing=SizeReflex.MEDIUM.value
                 ),
+                id="publications",
                 width="100%",
                 spacing=SizeReflex.MEDIUM.value
             ),
             rx.fragment()
         ),
-        title(t("title_projects", lang)),
-        link_button(
-            t("cv_title", lang),
-            t("cv_description", lang),
-            "icons/terminal.svg",
-            CV_URL
-        ),
-        link_button(
-            t("saveup_title", lang),
-            t("saveup_description", lang),
-            "icons/saveup.svg",
-            SAVEUP_URL
+
+        # Projects section
+        rx.vstack(
+            title(t("title_projects", lang)),
+            link_button(
+                t("cv_title", lang),
+                t("cv_description", lang),
+                "icons/terminal.svg",
+                CV_URL
+            ),
+            link_button(
+                t("saveup_title", lang),
+                t("saveup_description", lang),
+                "icons/saveup.svg",
+                SAVEUP_URL
+            ),
+            id="projects",
+            width="100%",
+            spacing=SizeReflex.MEDIUM.value
         ),
 
-        title(t("title_links", lang)),
-        link_button(
-            t("linkedin_title", lang),
-            t("linkedin_description", lang),
-            "icons/linkedin.svg",
-            LINKEDIN_URL
-        ),
-        link_button(
-            t("github_title", lang),
-            t("github_description", lang),
-            "icons/github.svg",
-            GITHUB_URL
-        ),
-        link_button(
-            t("medium_title", lang),
-            t("medium_description", lang),
-            "icons/medium.svg",
-            MEDIUM_URL
-        ),
-        link_button(
-            t("codewars_title", lang),
-            t("codewars_description", lang),
-            "icons/codewars.svg",
-            CODEWARS_URL
+        # Links of interest section
+        rx.vstack(
+            title(t("title_links", lang)),
+            link_button(
+                t("linkedin_title", lang),
+                t("linkedin_description", lang),
+                "icons/linkedin.svg",
+                LINKEDIN_URL
+            ),
+            link_button(
+                t("github_title", lang),
+                t("github_description", lang),
+                "icons/github.svg",
+                GITHUB_URL
+            ),
+            link_button(
+                t("medium_title", lang),
+                t("medium_description", lang),
+                "icons/medium.svg",
+                MEDIUM_URL
+            ),
+            link_button(
+                t("codewars_title", lang),
+                t("codewars_description", lang),
+                "icons/codewars.svg",
+                CODEWARS_URL
+            ),
+            id="links",
+            width="100%",
+            spacing=SizeReflex.MEDIUM.value
         ),
 
-        title(t("title_contact", lang)),
-        link_button(
-            t("email_title", lang),
-            EMAIL_URL,
-            "icons/email.svg",
-            f"mailto:{EMAIL_URL}"
+        # Contact section
+        rx.vstack(
+            title(t("title_contact", lang)),
+            link_button(
+                t("email_title", lang),
+                EMAIL_URL,
+                "icons/email.svg",
+                f"mailto:{EMAIL_URL}"
+            ),
+            id="contact",
+            width="100%",
+            spacing=SizeReflex.MEDIUM.value
         ),
 
         width="100%",
