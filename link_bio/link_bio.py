@@ -88,5 +88,10 @@ def index_en() -> rx.Component:
 app = rx.App(
     stylesheets=styles.STYLESHEETS,
     style=styles.BASE_STYLE,
-    enable_state=False
+    enable_state=False,
+    head_components=[
+        # Vercel Web Analytics
+        rx.script("window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };"),
+        rx.script(src="/_vercel/insights/script.js", custom_attrs={"defer": True}),
+    ]
 )
