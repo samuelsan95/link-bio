@@ -29,12 +29,12 @@ STYLESHEETS = [
 ]
 
 # Styles general
+# We keep BASE_STYLE focused on layout and common typography
+# Colors are applied directly in components for dynamic mode compatibility
 BASE_STYLE = {
     "font_family": Font.DEFAULT.value,
     "font_weight": FontWeight.LIGHT.value,
-    "background_color": Color.BACKGROUND.value,
     rx.heading: {
-        "color": TextColor.HEADER.value,
         "font_family": Font.TITLE.value,
         "font_weight": FontWeight.MEDIUM.value,
     },
@@ -44,14 +44,9 @@ BASE_STYLE = {
         "display": "block",
         "padding": Size.SMALL.value,
         "border_radius": Size.DEFAULT.value,
-        "background_color": Color.CONTENT.value,
         "white_space": "normal",
         "text_align": "start",
-        "color": TextColor.HEADER.value,
-        "transition": "background-color 0.2s ease",
-        "_hover": {
-            "background_color": Color.SECONDARY.value,
-        }
+        "transition": "background-color 0.2s ease, color 0.2s ease",
     },
     rx.link: {
         "text_decoration": "none",
@@ -59,12 +54,7 @@ BASE_STYLE = {
     },
     rx.card: {
         "border_radius": Size.DEFAULT.value,
-        "background_color": Color.CONTENT.value,
-        "color": TextColor.HEADER.value,
         "transition": "background-color 0.2s ease",
-        "_hover": {
-            "background_color": Color.SECONDARY.value,
-        }
     }
 }
 
@@ -81,17 +71,26 @@ logo_navbar_style = dict(
     margin_inline_start="-0.5em !important"
 )
 
-button_title_style = dict(
-    font_family = Font.TITLE.value,
-    font_weight=FontWeight.MEDIUM.value,
-    color = TextColor.HEADER.value
-)
+# Helper functions for dynamic styles to avoid resolvedColorMode error
+def get_button_title_style():
+    return dict(
+        font_family=Font.TITLE.value,
+        font_weight=FontWeight.MEDIUM.value,
+        color=rx.color_mode_cond(
+            TextColor.LIGHT_HEADER.value,
+            TextColor.HEADER.value
+        )
+    )
 
-button_body_style = dict(
-    font_family = Font.DEFAULT.value,
-    font_weight=FontWeight.LIGHT.value,
-    color = TextColor.BODY.value
-)
+def get_button_body_style():
+    return dict(
+        font_family=Font.DEFAULT.value,
+        font_weight=FontWeight.LIGHT.value,
+        color=rx.color_mode_cond(
+            TextColor.LIGHT_BODY.value,
+            TextColor.BODY.value
+        )
+    )
 
 title_style = dict(
     width = "100%",

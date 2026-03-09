@@ -3,6 +3,7 @@ from link_bio.styles.styles import Size, SizeReflex
 from link_bio.styles.colors import Color, TextColor
 from link_bio.components.selector_language import selector_language
 from link_bio.services.language_service import t
+from link_bio.components.theme_button import theme_button
 
 
 def _nav_link(text: str, href: str) -> rx.Component:
@@ -29,21 +30,21 @@ def hamburger_button() -> rx.Component:
         rx.box(
             width="22px",
             height="2px",
-            background_color=TextColor.HEADER.value,
+            background_color=Color.PRIMARY.value,
             border_radius="2px",
             class_name="hamburger-line"
         ),
         rx.box(
             width="22px",
             height="2px",
-            background_color=TextColor.HEADER.value,
+            background_color=Color.PRIMARY.value,
             border_radius="2px",
             class_name="hamburger-line"
         ),
         rx.box(
             width="22px",
             height="2px",
-            background_color=TextColor.HEADER.value,
+            background_color=Color.PRIMARY.value,
             border_radius="2px",
             class_name="hamburger-line"
         ),
@@ -56,7 +57,9 @@ def hamburger_button() -> rx.Component:
         padding=Size.SMALL.value,
         border_radius="8px",
         aria_label="Menú de navegación",
-        _hover={"background_color": Color.SECONDARY.value},
+        _hover={
+            "background_color": Color.SECONDARY.value
+        },
         transition="background-color 0.2s ease",
         class_name="hamburger-btn"
     )
@@ -81,12 +84,19 @@ def hamburger_menu(lang: str) -> rx.Component:
                 width="100%",
                 background_color="rgba(211, 226, 159, 0.3)"
             ),
-            rx.box(selector_language(lang), padding_left=Size.SMALL.value),
+            rx.hstack(
+                theme_button(),
+                selector_language(lang),
+                spacing="4",
+                align="center",
+                padding_left=Size.SMALL.value
+            ),
             align_items="start",
             spacing=SizeReflex.SMALL.value,
             padding_x=Size.BIG.value,
             padding_top=Size.SMALL.value,
             padding_bottom=Size.DEFAULT.value
         ),
+        background_color=Color.CONTENT.value,
         class_name="nav-menu"
     )

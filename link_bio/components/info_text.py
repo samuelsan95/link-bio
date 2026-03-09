@@ -8,13 +8,19 @@ def info_text(title: str, body: str) -> rx.Component:
         rx.text(
             title,
             font_weight="bold",
-            color=Color.PRIMARY.value
+            color=rx.color_mode_cond(
+                Color.LIGHT_ACCENT.value,
+                Color.PRIMARY.value
+            )
         ),
 
         rx.text(
             body,
-        font_size=Size.MEDIUM.value,
-        color=TextColor.BODY.value
+            font_size=Size.MEDIUM.value,
+            color=rx.color_mode_cond(
+                TextColor.LIGHT_BODY.value,
+                TextColor.BODY.value
+            )
         ),
         direction="row",
         spacing="2"

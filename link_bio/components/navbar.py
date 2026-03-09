@@ -3,6 +3,7 @@ from link_bio.styles.styles import Size, navbar_title_style, logo_navbar_style
 from link_bio.styles.colors import Color
 from link_bio.components.selector_language import selector_language
 from link_bio.components.hamburger_menu import hamburger_button, hamburger_menu
+from link_bio.components.theme_button import theme_button
 
 
 def navbar(lang: str = "es") -> rx.Component:
@@ -28,7 +29,7 @@ def navbar(lang: str = "es") -> rx.Component:
                 ),
                 rx.text(
                     "amuel",
-                    color=Color.PRIMARY.value,
+                    color=Color.PRIMARY.value, # Brand Green everywhere
                     style=navbar_title_style,
                     as_="span"
                 ),
@@ -44,7 +45,7 @@ def navbar(lang: str = "es") -> rx.Component:
                 ),
                 rx.text(
                     "an",
-                    color=Color.PRIMARY.value,
+                    color=Color.PRIMARY.value, # Brand Green everywhere
                     style=navbar_title_style,
                     as_="span"
                 ),
@@ -52,8 +53,14 @@ def navbar(lang: str = "es") -> rx.Component:
                 spacing="0"
             ),
             rx.spacer(),
-            # Language selector visible only on desktop
-            rx.box(selector_language(lang), class_name="desktop-lang"),
+            # Theme toggle and language selector visible only on desktop
+            rx.hstack(
+                theme_button(),
+                selector_language(lang),
+                spacing="4",
+                align="center",
+                class_name="desktop-lang"
+            ),
             # Hamburger button — visible only on mobile
             hamburger_button(),
             align="center",

@@ -22,10 +22,17 @@ def header(lang: str = "es") -> rx.Component:
                 ),
                 width="96px",
                 height="96px",
-                background_color=Color.CONTENT.value,
+                background_color=rx.color_mode_cond(
+                    Color.LIGHT_CONTENT.value,
+                    Color.CONTENT.value
+                ),
                 padding="2px",
-                border="2px solid",
-                border_color=Color.PRIMARY.value,
+                border_width="2px",
+                border_style="solid",
+                border_color=rx.color_mode_cond(
+                    Color.LIGHT_ACCENT.value,
+                    Color.PRIMARY.value
+                ),
                 border_radius="9999px",
                 flex_shrink="0"
             ),
@@ -37,7 +44,10 @@ def header(lang: str = "es") -> rx.Component:
                 rx.text(
                     "@samuelsan",
                     margin_top="0px !important",
-                    color=TextColor.BODY.value
+                    color=rx.color_mode_cond(
+                        TextColor.LIGHT_BODY.value,
+                        TextColor.BODY.value
+                    )
                 ),
                 align_items="start"
             ),
@@ -55,9 +65,11 @@ def header(lang: str = "es") -> rx.Component:
         ),
         rx.text(
             t("bio_text", lang),
-            color=TextColor.BODY.value
+            color=rx.color_mode_cond(
+                TextColor.LIGHT_BODY.value,
+                TextColor.BODY.value
+            )
         ),
         spacing=SizeReflex.BIG.value,
         align_items="start"
     )
-

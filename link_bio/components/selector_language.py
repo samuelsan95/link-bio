@@ -18,7 +18,9 @@ def selector_language(current_lang: str) -> rx.Component:
             background_color=Color.SECONDARY.value,
             padding=Size.SMALL.value,
             border_radius="8px",
-            border=f"2px solid {Color.PRIMARY.value}",
+            border_width="2px",
+            border_style="solid",
+            border_color=Color.PRIMARY.value,
             cursor="pointer",
             _hover={
                 "background_color": Color.CONTENT.value,
