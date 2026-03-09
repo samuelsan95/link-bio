@@ -94,6 +94,7 @@ def index_en() -> rx.Component:
 app = rx.App(
     stylesheets=styles.STYLESHEETS,
     style=styles.BASE_STYLE,
+    enable_state=False,
     head_components=[
         # Vercel Web Analytics
         rx.script("window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };"),
