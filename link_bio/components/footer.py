@@ -15,7 +15,10 @@ def footer(lang: str = "es") -> rx.Component:
             font_size=Size.MEDIUM.value
         ),
         padding_bottom=Size.BIG.value,
-        color=TextColor.FOOTER.value,
+        color=rx.color_mode_cond(
+            TextColor.LIGHT_FOOTER.value,
+            TextColor.FOOTER.value
+        ),
         direction="column",
         align="center",
         width="100%"

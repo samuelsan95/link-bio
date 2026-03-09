@@ -1,5 +1,6 @@
 import reflex as rx
 import link_bio.styles.styles as styles
+from link_bio.styles.colors import Color, TextColor
 
 def link_button(title: str, body: str, image: str, url: str) -> rx.Component:
     return rx.link(
@@ -11,11 +12,17 @@ def link_button(title: str, body: str, image: str, url: str) -> rx.Component:
                         height=styles.Size.BIG.value,
                         margin=styles.Size.MEDIUM.value,
                         alt=title,
-                        loading="lazy"
+                        loading="lazy",
+                        style={
+                            "filter": rx.color_mode_cond(
+                                "invert(1)",
+                                "none"
+                            )
+                        }
                     ),
                     rx.vstack(
-                        rx.text(title, style=styles.button_title_style, size=styles.SizeReflex.MEDIUM.value),
-                        rx.text(body, style=styles.button_body_style, size=styles.SizeReflex.SMALL.value),
+                        rx.text(title, style=styles.get_button_title_style(), size=styles.SizeReflex.MEDIUM.value),
+                        rx.text(body, style=styles.get_button_body_style(), size=styles.SizeReflex.SMALL.value),
                         spacing=styles.SizeReflex.SMALL.value,
                         align_items="start",
                         margin=styles.Size.ZERO.value,
@@ -23,7 +30,21 @@ def link_button(title: str, body: str, image: str, url: str) -> rx.Component:
                     ),
                     width="100%"
                 ),
-                style=styles.link_style
+                style=styles.link_style,
+                background_color=rx.color_mode_cond(
+                    Color.LIGHT_CONTENT.value,
+                    Color.CONTENT.value
+                ),
+                color=rx.color_mode_cond(
+                    TextColor.LIGHT_HEADER.value,
+                    TextColor.HEADER.value
+                ),
+                _hover={
+                    "background_color": rx.color_mode_cond(
+                        Color.LIGHT_SECONDARY.value,
+                        Color.SECONDARY.value
+                    ),
+                }
             ),
             href=url,
             is_external=True,

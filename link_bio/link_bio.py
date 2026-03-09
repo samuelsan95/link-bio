@@ -4,6 +4,7 @@ from link_bio.components.footer import footer
 from link_bio.views.header.header import header
 from link_bio.views.links.links import links
 import link_bio.styles.styles as styles
+from link_bio.styles.colors import Color
 
 
 def _page(lang: str) -> rx.Component:
@@ -28,7 +29,12 @@ def _page(lang: str) -> rx.Component:
             ),
             rx.el.footer(
                 footer(lang)
-            )
+            ),
+            background_color=rx.color_mode_cond(
+                Color.LIGHT_BACKGROUND.value,
+                Color.BACKGROUND.value
+            ),
+            min_height="100vh"
         )
     )
 
@@ -88,7 +94,6 @@ def index_en() -> rx.Component:
 app = rx.App(
     stylesheets=styles.STYLESHEETS,
     style=styles.BASE_STYLE,
-    enable_state=False,
     head_components=[
         # Vercel Web Analytics
         rx.script("window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };"),
