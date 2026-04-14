@@ -23,5 +23,11 @@
     "cv_description": "Curriculum interactivo como un terminal",
     "title_projects": "Proyectos",
     "saveup_title": "SaveUp",
-    "saveup_description": "Un proyecto diseñado para fomentar el ahorro personal"
+    "saveup_description": "Un proyecto diseñado para fomentar el ahorro personal",
+    "card_title": "Tarjeta de visita",
+    "card_role": "Desarrollador Web",
+    "card_print_button": "Imprimir",
+    "card_share_button": "Compartir",
+    "card_back_button": "Volver",
+    "card_footer_link": "Tarjeta de visita"
 }
