@@ -10,7 +10,7 @@ def header(lang: str = "es") -> rx.Component:
         rx.flex(
             rx.box(
                 rx.image(
-                    src="avatar.jpeg",
+                    src="avatar.webp",
                     alt=t("avatar_alt", lang),
                     width="100%",
                     height="100%",
