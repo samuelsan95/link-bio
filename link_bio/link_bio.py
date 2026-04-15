@@ -3,6 +3,7 @@ from link_bio.components.navbar import navbar
 from link_bio.components.footer import footer
 from link_bio.views.header.header import header
 from link_bio.views.links.links import links
+from link_bio.views.card.card_view import card_view
 import link_bio.styles.styles as styles
 from link_bio.styles.colors import Color
 
@@ -89,6 +90,60 @@ def index() -> rx.Component:
 )
 def index_en() -> rx.Component:
     return _page("en")
+
+
+def _card_page(lang: str) -> rx.Component:
+    return rx.fragment(
+        rx.script(src="/manifest.json", type="application/manifest+json"),
+        rx.box(
+            rx.el.main(
+                card_view(lang),
+            ),
+            background_color=rx.color_mode_cond(
+                Color.LIGHT_BACKGROUND.value,
+                Color.BACKGROUND.value
+            ),
+            min_height="100vh"
+        )
+    )
+
+
+@rx.page(
+    route="/card",
+    title="Samuel Sánchez | Tarjeta de visita",
+    description="Tarjeta de visita digital de Samuel Sánchez, desarrollador web con más de 10 años de experiencia.",
+    image="avatar.jpeg",
+    meta=[
+        {"name": "robots", "content": "noindex"},
+        {"property": "og:type", "content": "profile"},
+        {"property": "og:url", "content": "https://samuelsan.es/card"},
+        {"property": "og:title", "content": "Samuel Sánchez | Desarrollador Web"},
+        {"property": "og:image", "content": "https://samuelsan.es/avatar.jpeg"},
+        {"name": "theme-color", "content": "#1a1a2e"},
+        {"http-equiv": "Content-Language", "content": "es"},
+    ],
+)
+def card_es() -> rx.Component:
+    return _card_page("es")
+
+
+@rx.page(
+    route="/en/card",
+    title="Samuel Sánchez | Business Card",
+    description="Digital business card of Samuel Sánchez, web developer with over 10 years of experience.",
+    image="avatar.jpeg",
+    meta=[
+        {"name": "robots", "content": "noindex"},
+        {"property": "og:type", "content": "profile"},
+        {"property": "og:url", "content": "https://samuelsan.es/en/card"},
+        {"property": "og:title", "content": "Samuel Sánchez | Web Developer"},
+        {"property": "og:image", "content": "https://samuelsan.es/avatar.jpeg"},
+        {"name": "theme-color", "content": "#1a1a2e"},
+        {"http-equiv": "Content-Language", "content": "en"},
+    ],
+)
+def card_en() -> rx.Component:
+    return _card_page("en")
 
 
 app = rx.App(

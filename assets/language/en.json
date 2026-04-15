@@ -23,5 +23,11 @@
     "cv_description": "Interactive curriculum as a terminal",
     "title_projects": "Projects",
     "saveup_title": "SaveUp",
-    "saveup_description": "A project designed to encourage personal savings"
+    "saveup_description": "A project designed to encourage personal savings",
+    "card_title": "Business Card",
+    "card_role": "Web Developer",
+    "card_print_button": "Print",
+    "card_share_button": "Share",
+    "card_back_button": "Back",
+    "card_footer_link": "Business Card"
 }

@@ -1,6 +1,6 @@
 import reflex as rx
 from link_bio.styles.styles import Size
-from link_bio.styles.colors import TextColor
+from link_bio.styles.colors import TextColor, Color
 from link_bio.services.language_service import t
 
 def footer(lang: str = "es") -> rx.Component:
