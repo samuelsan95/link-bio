@@ -6,6 +6,7 @@ from link_bio.services.language_service import t
 
 
 def header(lang: str = "es") -> rx.Component:
+    card_href = "/card" if lang == "es" else "/en/card"
     return rx.vstack(
         rx.flex(
             rx.box(
@@ -41,18 +42,25 @@ def header(lang: str = "es") -> rx.Component:
                     "Samuel Sánchez",
                     size=SizeReflex.VERY_BIG.value
                 ),
-                rx.text(
-                    "@samuelsan",
-                    margin_top="0px !important",
+                rx.link(
+                    rx.hstack(
+                        rx.icon("credit-card", size=14),
+                        rx.text(t("card_footer_link", lang), font_size=SizeReflex.SMALL.value),
+                        spacing="1",
+                        align="center"
+                    ),
+                    href=card_href,
                     color=rx.color_mode_cond(
-                        TextColor.LIGHT_BODY.value,
-                        TextColor.BODY.value
-                    )
+                        Color.LIGHT_ACCENT.value,
+                        Color.PRIMARY.value
+                    ),
+                    _hover={"opacity": "1"},
+                    spacing=SizeReflex.SMALL.value,
                 ),
                 align_items="start"
             ),
             direction="row",
-            spacing=SizeReflex.MEDIUM.value,
+            spacing=SizeReflex.SMALL.value,
             align="center"
         ),
         rx.flex(
