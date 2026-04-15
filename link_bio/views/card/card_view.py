@@ -11,7 +11,7 @@ def _card_link(icon: str, display: str, url: str) -> rx.Component:
     return rx.link(
         rx.hstack(
             rx.image(
-                src=f"icons/{icon}",
+                src=f"/icons/{icon}",
                 width="16px",
                 height="16px",
                 alt=display,
@@ -80,7 +80,7 @@ def card_view(lang: str = "es") -> rx.Component:
                 # Header: avatar + identity
                 rx.hstack(
                     rx.image(
-                        src="avatar.webp",
+                        src="/avatar.webp",
                         width="72px",
                         height="72px",
                         border_radius="9999px",
@@ -179,7 +179,7 @@ def card_view(lang: str = "es") -> rx.Component:
                     ),
                     rx.spacer(),
                     rx.image(
-                        src="qr_code.png",
+                        src="/qr_code.png",
                         width="72px",
                         height="72px",
                         alt="QR samuelsan.es",

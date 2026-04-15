@@ -1,8 +1,9 @@
 import re
 import requests
+from typing import List, Dict, Any
 
 
-def get_last_publications_medium():
+def get_last_publications_medium() -> List[Dict[str, Any]]:
     url = 'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@samuelsan95'
     headers = {
         'Content-Type': 'application/json',
@@ -12,11 +13,15 @@ def get_last_publications_medium():
         response = requests.get(url, headers=headers, timeout=10)
         if response.status_code == 200:
             data = response.json()
-            return data['items']
+            items = data.get('items', [])
+            if not isinstance(items, list):
+                print(f"Unexpected items type: {type(items)}")
+                return []
+            return items
         else:
             print(f"Error: {response.status_code} - {response.text}")
             return []
-    except requests.RequestException as e:
+    except Exception as e:
         print(f"Error fetching Medium publications: {e}")
         return []
 
