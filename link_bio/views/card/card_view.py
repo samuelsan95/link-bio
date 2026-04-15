@@ -122,7 +122,7 @@ def card_view(lang: str = "es") -> rx.Component:
                         spacing="1",
                         align_items="start"
                     ),
-                    spacing=Size.DEFAULT.value,
+                    spacing=SizeReflex.MEDIUM.value,
                     align="center",
                     width="100%"
                 ),
@@ -192,7 +192,7 @@ def card_view(lang: str = "es") -> rx.Component:
                     align="end"
                 ),
 
-                spacing=Size.DEFAULT.value,
+                spacing=SizeReflex.MEDIUM.value,
                 width="100%"
             ),
             background_color=rx.color_mode_cond(
@@ -252,13 +252,13 @@ def card_view(lang: str = "es") -> rx.Component:
                 display="inline-flex",
                 align_items="center"
             ),
-            spacing=Size.SMALL.value,
+            spacing=SizeReflex.SMALL.value,
             class_name="no-print"
         ),
 
         align="center",
         justify="center",
-        spacing=Size.DEFAULT.value,
+        spacing=SizeReflex.MEDIUM.value,
         padding=Size.BIG.value,
         min_height="100vh",
         width="100%"
