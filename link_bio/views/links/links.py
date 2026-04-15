@@ -1,22 +1,18 @@
 import reflex as rx
 from typing import List, Dict
 from link_bio.components.link_button import link_button
-from link_bio.components.card import card
 from link_bio.components.title import title
+from link_bio.components.publication_carousel import publication_carousel
 from link_bio.styles.styles import SizeReflex
 from link_bio.constants import LINKEDIN_URL, GITHUB_URL, MEDIUM_URL, CODEWARS_URL, EMAIL_URL, CV_URL, SAVEUP_URL
-from link_bio.services.publication_service import get_last_publications_medium, get_publication_description
-from link_bio.services.language_service import t, _translator
-from link_bio.utils.utils import shorten_string
+from link_bio.services.publication_service import get_last_publications_medium
+from link_bio.services.language_service import t
 
-MAX_CHARACTERES = 200
-
-translator = _translator
-publications: List[Dict[str, str]] = get_last_publications_medium()
+publications: List[Dict] = get_last_publications_medium()
 
 
 def links(lang: str = "es") -> rx.Component:
-    has_publications = len(publications) >= 2
+    has_publications = len(publications) >= 1
 
     return rx.vstack(
         # Publications section
@@ -24,57 +20,7 @@ def links(lang: str = "es") -> rx.Component:
             has_publications,
             rx.vstack(
                 title(t("title_last_publications", lang)),
-                rx.grid(
-                    card(
-                        rx.cond(
-                            lang == "es",
-                            publications[0]['title'],
-                            translator.external_translate(publications[0]['title'], "en")
-                        ),
-                        rx.cond(
-                            lang == "es",
-                            shorten_string(
-                                get_publication_description(publications[0]),
-                                MAX_CHARACTERES
-                            ),
-                            translator.external_translate(
-                                shorten_string(
-                                    get_publication_description(publications[0]),
-                                    MAX_CHARACTERES
-                                ),
-                                "en"
-                            )
-                        ),
-                        publications[0]['link'],
-                        lang
-                    ),
-                    card(
-                        rx.cond(
-                            lang == "es",
-                            publications[1]['title'],
-                            translator.external_translate(publications[1]['title'], "en")
-                        ),
-                        rx.cond(
-                            lang == "es",
-                            shorten_string(
-                                get_publication_description(publications[1]),
-                                MAX_CHARACTERES
-                            ),
-                            translator.external_translate(
-                                shorten_string(
-                                    get_publication_description(publications[1]),
-                                    MAX_CHARACTERES
-                                ),
-                                "en"
-                            )
-                        ),
-                        publications[1]['link'],
-                        lang
-                    ),
-                    columns=rx.breakpoints(sm="1", md="2"),
-                    width="100%",
-                    spacing=SizeReflex.MEDIUM.value
-                ),
+                publication_carousel(publications, lang),
                 id="publications",
                 width="100%",
                 spacing=SizeReflex.MEDIUM.value
